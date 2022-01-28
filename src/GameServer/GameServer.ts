@@ -1,5 +1,5 @@
-import { RemovalPolicy, StackProps } from 'aws-cdk-lib';
-import { Construct } from 'constructs';
+import { RemovalPolicy, StackProps } from "aws-cdk-lib";
+import { Construct } from "constructs";
 import {
     AmazonLinuxEdition,
     AmazonLinuxGeneration,
@@ -15,14 +15,14 @@ import {
     SubnetType,
     UserData,
     Vpc,
-} from 'aws-cdk-lib/aws-ec2';
-import { BackupPlan, BackupResource, BackupSelection } from 'aws-cdk-lib/aws-backup';
+} from "aws-cdk-lib/aws-ec2";
+import { BackupPlan, BackupResource, BackupSelection } from "aws-cdk-lib/aws-backup";
 
 /**
  * Constructor properties that define the GameServer object.
  * @experimental
  */
-export interface GameServerProps extends StackProps {
+export interface GameServerProps {
     /**
      * The name of the game being hosted on this GameServer. This is used for LogicalId sugar throughout the object.
      */
@@ -122,17 +122,19 @@ export abstract class GameServer extends Construct {
 
         this.elasticIp = new CfnEIP(this, `${this.game}ElasticIP`, {
             domain: "vpc",
-            instanceId: this.server.instanceId
+            instanceId: this.server.instanceId,
         });
 
-        this.elasticIp.applyRemovalPolicy(props.releaseIPOnDelete !== false ? RemovalPolicy.DESTROY : RemovalPolicy.RETAIN)
+        this.elasticIp.applyRemovalPolicy(
+            props.releaseIPOnDelete !== false ? RemovalPolicy.DESTROY : RemovalPolicy.RETAIN
+        );
 
         if (props.backupGameServer !== false) {
-            const backupPlan = BackupPlan.dailyMonthly1YearRetention(this, `${this.game}ServerBackupPlan`)
+            const backupPlan = BackupPlan.dailyMonthly1YearRetention(this, `${this.game}ServerBackupPlan`);
             const backupSelection = new BackupSelection(this, `${this.game}BackupSelection`, {
                 backupPlan,
-                resources: [BackupResource.fromEc2Instance(this.server)]
-            })
+                resources: [BackupResource.fromEc2Instance(this.server)],
+            });
         }
     }
 }
