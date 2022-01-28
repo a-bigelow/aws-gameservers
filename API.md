@@ -54,6 +54,7 @@ new GameServer(scope: Construct, id: string, props: GameServerProps)
 | <code><a href="#aws-gameservers.GameServer.property.game">game</a></code> | <code>string</code> | The name of the game being hosted on this GameServer. |
 | <code><a href="#aws-gameservers.GameServer.property.server">server</a></code> | <code>aws-cdk-lib.aws_ec2.IInstance</code> | The EC2 Instance Object representing the GameServer itself. |
 | <code><a href="#aws-gameservers.GameServer.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC where the GameServer is deployed. |
+| <code><a href="#aws-gameservers.GameServer.property.serverRole">serverRole</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | The role associated with the GameServer's instance profile. |
 | <code><a href="#aws-gameservers.GameServer.property.userData">userData</a></code> | <code>aws-cdk-lib.aws_ec2.UserData</code> | The modifiable UserData object attached to the GameServer Instance object. |
 
 ---
@@ -103,6 +104,18 @@ public readonly vpc: IVpc;
 - *Type:* aws-cdk-lib.aws_ec2.IVpc
 
 The VPC where the GameServer is deployed.
+
+---
+
+##### `serverRole`<sup>Required</sup> <a name="serverRole" id="aws-gameservers.GameServer.property.serverRole"></a>
+
+```typescript
+public readonly serverRole: IRole;
+```
+
+- *Type:* aws-cdk-lib.aws_iam.IRole
+
+The role associated with the GameServer's instance profile.
 
 ---
 
@@ -409,6 +422,7 @@ Defines the overall expected shape of GameServer objects.
 | <code><a href="#aws-gameservers.IGameServer.property.game">game</a></code> | <code>string</code> | The name of the game being hosted on this GameServer. |
 | <code><a href="#aws-gameservers.IGameServer.property.server">server</a></code> | <code>aws-cdk-lib.aws_ec2.IInstance</code> | The EC2 Instance Object representing the GameServer itself. |
 | <code><a href="#aws-gameservers.IGameServer.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC where the GameServer is deployed. |
+| <code><a href="#aws-gameservers.IGameServer.property.serverRole">serverRole</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | The role associated with the GameServer's instance profile. |
 | <code><a href="#aws-gameservers.IGameServer.property.userData">userData</a></code> | <code>aws-cdk-lib.aws_ec2.UserData</code> | The modifiable UserData object attached to the GameServer Instance object. |
 
 ---
@@ -461,6 +475,18 @@ The VPC where the GameServer is deployed.
 
 ---
 
+##### `serverRole`<sup>Required</sup> <a name="serverRole" id="aws-gameservers.IGameServer.property.serverRole"></a>
+
+```typescript
+public readonly serverRole: IRole;
+```
+
+- *Type:* aws-cdk-lib.aws_iam.IRole
+
+The role associated with the GameServer's instance profile.
+
+---
+
 ##### `userData`<sup>Required</sup> <a name="userData" id="aws-gameservers.IGameServer.property.userData"></a>
 
 ```typescript
@@ -490,6 +516,7 @@ Defines the overall expected shape of ValheimServer objects.
 | <code><a href="#aws-gameservers.IValheimServer.property.game">game</a></code> | <code>string</code> | The name of the game being hosted on this GameServer. |
 | <code><a href="#aws-gameservers.IValheimServer.property.server">server</a></code> | <code>aws-cdk-lib.aws_ec2.IInstance</code> | The EC2 Instance Object representing the GameServer itself. |
 | <code><a href="#aws-gameservers.IValheimServer.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | The VPC where the GameServer is deployed. |
+| <code><a href="#aws-gameservers.IValheimServer.property.serverRole">serverRole</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | The role associated with the GameServer's instance profile. |
 | <code><a href="#aws-gameservers.IValheimServer.property.userData">userData</a></code> | <code>aws-cdk-lib.aws_ec2.UserData</code> | The modifiable UserData object attached to the GameServer Instance object. |
 
 ---
@@ -539,6 +566,18 @@ public readonly vpc: IVpc;
 - *Type:* aws-cdk-lib.aws_ec2.IVpc
 
 The VPC where the GameServer is deployed.
+
+---
+
+##### `serverRole`<sup>Required</sup> <a name="serverRole" id="aws-gameservers.IValheimServer.property.serverRole"></a>
+
+```typescript
+public readonly serverRole: IRole;
+```
+
+- *Type:* aws-cdk-lib.aws_iam.IRole
+
+The role associated with the GameServer's instance profile.
 
 ---
 
