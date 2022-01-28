@@ -8,7 +8,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   name: 'aws-gameservers',
   repositoryUrl: 'https://github.com/a-bigelow/aws-gameservers.git',
-  release: false, // Until further notice
+  release: true,
   eslint: false,
   prettier: true,
   prettierOptions: {
