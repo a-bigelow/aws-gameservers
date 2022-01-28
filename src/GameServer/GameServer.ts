@@ -15,6 +15,7 @@ import {
     Vpc,
 } from "aws-cdk-lib/aws-ec2";
 import { BackupPlan, BackupResource, BackupSelection } from "aws-cdk-lib/aws-backup";
+import { IRole, ManagedPolicy, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 
 /**
  * Constructor properties that define the GameServer object.
@@ -90,6 +91,11 @@ export interface IGameServer {
      * The modifiable UserData object attached to the GameServer Instance object.
      */
     userData: UserData;
+
+    /**
+     * The role associated with the GameServer's instance profile.
+     */
+    serverRole: IRole;
 }
 
 /**
@@ -103,6 +109,7 @@ export abstract class GameServer extends Construct implements IGameServer {
     public readonly server: IInstance;
     public readonly elasticIp: CfnEIP;
     public userData: UserData;
+    public serverRole: IRole
 
     constructor(scope: Construct, id: string, props: GameServerProps) {
         super(scope, id);
@@ -128,6 +135,10 @@ export abstract class GameServer extends Construct implements IGameServer {
         // Create a simple UserData object and expose it for expansion by child classes.
         this.userData = UserData.forLinux();
 
+        // Instantiate a role for the server that has the SSMCore policy
+        this.serverRole = new Role(this, `${this.game}ServerRole`, { assumedBy: new ServicePrincipal('ec2.amazonaws.com')})
+        this.serverRole.addManagedPolicy(ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'))
+
         this.server = new Instance(this, `${this.game}Server`, {
             blockDevices: [
                 {
@@ -145,6 +156,7 @@ export abstract class GameServer extends Construct implements IGameServer {
             propagateTagsToVolumeOnCreation: true,
             userData: this.userData,
             vpc: this.vpc,
+            role: this.serverRole
         });
 
         this.elasticIp = new CfnEIP(this, `${this.game}ElasticIP`, {
