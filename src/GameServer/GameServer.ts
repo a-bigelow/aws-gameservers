@@ -125,7 +125,7 @@ export abstract class GameServer extends Construct {
             instanceId: this.server.instanceId
         });
 
-        this.elasticIp.applyRemovalPolicy(props.releaseIPOnDelete === true ? RemovalPolicy.DESTROY : RemovalPolicy.RETAIN)
+        this.elasticIp.applyRemovalPolicy(props.releaseIPOnDelete !== false ? RemovalPolicy.DESTROY : RemovalPolicy.RETAIN)
 
         if (props.backupGameServer !== false) {
             const backupPlan = BackupPlan.dailyMonthly1YearRetention(this, `${this.game}ServerBackupPlan`)
