@@ -63,12 +63,39 @@ export interface GameServerProps {
     readonly backupGameServer?: boolean;
 }
 
+export interface IGameServer {
+    /**
+     * The name of the game being hosted on this GameServer.
+     */
+    readonly game: string;
+
+    /**
+     * The VPC where the GameServer is deployed.
+     */
+    readonly vpc: IVpc;
+
+    /**
+     * The EC2 Instance Object representing the GameServer itself.
+     */
+    readonly server: IInstance;
+
+    /**
+     * The Elastic IP Address attached to the GameServer.
+     */
+    readonly elasticIp: CfnEIP;
+
+    /**
+     * The modifiable UserData object attached to the GameServer Instance object.
+     */
+    userData: UserData;
+}
+
 /**
  * An abstract class representing an EC2 instance with an optional AWS Backup Plan, Elastic IP Address, and new or imported VPC.
  * The GameServer abstract class is meant to be *extended* via the creation of child classes, e.g. ValheimServer, SatisfactoryServer.
  * @experimental
  */
-export abstract class GameServer extends Construct {
+export abstract class GameServer extends Construct implements IGameServer {
     public readonly game: string;
     public readonly vpc: IVpc;
     public readonly server: IInstance;
@@ -103,7 +130,7 @@ export abstract class GameServer extends Construct {
             blockDevices: [
                 {
                     deviceName: "/dev/sda1",
-                    volume: BlockDeviceVolume.ebs(props.rootVolumeSize >= 15 ? props.rootVolumeSize : 50, {
+                    volume: BlockDeviceVolume.ebs(props.rootVolumeSize && props.rootVolumeSize >= 15 ? props.rootVolumeSize! : 50, {
                         volumeType: EbsDeviceVolumeType.GP3,
                     }),
                 },
@@ -131,6 +158,7 @@ export abstract class GameServer extends Construct {
 
         if (props.backupGameServer !== false) {
             const backupPlan = BackupPlan.dailyMonthly1YearRetention(this, `${this.game}ServerBackupPlan`);
+            // @ts-ignore
             const backupSelection = new BackupSelection(this, `${this.game}BackupSelection`, {
                 backupPlan,
                 resources: [BackupResource.fromEc2Instance(this.server)],
