@@ -1,4 +1,4 @@
-import { RemovalPolicy, StackProps } from "aws-cdk-lib";
+import { RemovalPolicy } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import {
     AmazonLinuxEdition,
