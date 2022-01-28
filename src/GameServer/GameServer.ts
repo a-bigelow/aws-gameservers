@@ -142,9 +142,7 @@ export abstract class GameServer extends Construct implements IGameServer {
             instanceName: `CDK-GameServer-${this.game}`,
             instanceType: props.instanceType ?? new InstanceType("t3.medium"),
             machineImage: new AmazonLinuxImage({
-                edition: AmazonLinuxEdition.STANDARD,
                 generation: AmazonLinuxGeneration.AMAZON_LINUX_2022,
-                storage: AmazonLinuxStorage.EBS,
             }),
             propagateTagsToVolumeOnCreation: true,
             userData: this.userData,
