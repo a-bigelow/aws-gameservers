@@ -1,4 +1,5 @@
 const { awscdk } = require('projen');
+const { NodePackageManager } = require('projen/lib/javascript');
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'a-bigelow',
   authorAddress: 'adam@adambigelow.com',
@@ -7,7 +8,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   name: 'aws-gameservers',
   repositoryUrl: 'https://github.com/a-bigelow/aws-gameservers.git',
-  release: false, // Until further notice
+  release: true,
   eslint: false,
   prettier: true,
   prettierOptions: {
