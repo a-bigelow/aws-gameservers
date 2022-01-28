@@ -26,7 +26,7 @@ export interface GameServerProps {
     /**
      * The name of the game being hosted on this GameServer. This is used for LogicalId sugar throughout the object.
      */
-    readonly game: string;
+    readonly game?: string;
 
     /**
      * Optional: The VPC ID of the existing VPC in which to deploy the GameServer.
@@ -109,7 +109,7 @@ export abstract class GameServer extends Construct implements IGameServer {
     constructor(scope: Construct, id: string, props: GameServerProps) {
         super(scope, id);
 
-        this.game = props.game;
+        this.game = props.game!;
 
         this.vpc = props.vpcId
             ? Vpc.fromLookup(this, "importedVpc", { vpcId: props.vpcId })
