@@ -1,10 +1,8 @@
 import { RemovalPolicy } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import {
-    AmazonLinuxEdition,
     AmazonLinuxGeneration,
     AmazonLinuxImage,
-    AmazonLinuxStorage,
     BlockDeviceVolume,
     CfnEIP,
     EbsDeviceVolumeType,
@@ -26,7 +24,7 @@ export interface GameServerProps {
     /**
      * The name of the game being hosted on this GameServer. This is used for LogicalId sugar throughout the object.
      */
-    readonly game: string;
+    readonly game?: string;
 
     /**
      * Optional: The VPC ID of the existing VPC in which to deploy the GameServer.
@@ -109,7 +107,7 @@ export abstract class GameServer extends Construct implements IGameServer {
     constructor(scope: Construct, id: string, props: GameServerProps) {
         super(scope, id);
 
-        this.game = props.game;
+        this.game = props.game!;
 
         this.vpc = props.vpcId
             ? Vpc.fromLookup(this, "importedVpc", { vpcId: props.vpcId })
@@ -142,9 +140,7 @@ export abstract class GameServer extends Construct implements IGameServer {
             instanceName: `CDK-GameServer-${this.game}`,
             instanceType: props.instanceType ?? new InstanceType("t3.medium"),
             machineImage: new AmazonLinuxImage({
-                edition: AmazonLinuxEdition.STANDARD,
                 generation: AmazonLinuxGeneration.AMAZON_LINUX_2022,
-                storage: AmazonLinuxStorage.EBS,
             }),
             propagateTagsToVolumeOnCreation: true,
             userData: this.userData,

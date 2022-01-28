@@ -179,26 +179,12 @@ const gameServerProps: GameServerProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#aws-gameservers.GameServerProps.property.game">game</a></code> | <code>string</code> | The name of the game being hosted on this GameServer. |
 | <code><a href="#aws-gameservers.GameServerProps.property.backupGameServer">backupGameServer</a></code> | <code>boolean</code> | Optional: Whether to back up the GameServer. |
+| <code><a href="#aws-gameservers.GameServerProps.property.game">game</a></code> | <code>string</code> | The name of the game being hosted on this GameServer. |
 | <code><a href="#aws-gameservers.GameServerProps.property.instanceType">instanceType</a></code> | <code>aws-cdk-lib.aws_ec2.InstanceType</code> | Optional: The GameServer's EC2 Instance type. |
 | <code><a href="#aws-gameservers.GameServerProps.property.releaseIPOnDelete">releaseIPOnDelete</a></code> | <code>boolean</code> | Optional: Whether to automatically release the GameServer's elastic IP address when the stack is torn down. |
 | <code><a href="#aws-gameservers.GameServerProps.property.rootVolumeSize">rootVolumeSize</a></code> | <code>number</code> | Optional: The desired size of the GameServer's root volume, in GB. |
 | <code><a href="#aws-gameservers.GameServerProps.property.vpcId">vpcId</a></code> | <code>string</code> | Optional: The VPC ID of the existing VPC in which to deploy the GameServer. |
-
----
-
-##### `game`<sup>Required</sup> <a name="game" id="aws-gameservers.GameServerProps.property.game"></a>
-
-```typescript
-public readonly game: string;
-```
-
-- *Type:* string
-
-The name of the game being hosted on this GameServer.
-
-This is used for LogicalId sugar throughout the object.
 
 ---
 
@@ -214,6 +200,20 @@ public readonly backupGameServer: boolean;
 Optional: Whether to back up the GameServer.
 
 When true, the AWS Backup settings for the GameServer follow the "dailyMonthly1YearRetention" plan.
+
+---
+
+##### `game`<sup>Optional</sup> <a name="game" id="aws-gameservers.GameServerProps.property.game"></a>
+
+```typescript
+public readonly game: string;
+```
+
+- *Type:* string
+
+The name of the game being hosted on this GameServer.
+
+This is used for LogicalId sugar throughout the object.
 
 ---
 
@@ -293,26 +293,12 @@ const valheimServerProps: ValheimServerProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#aws-gameservers.ValheimServerProps.property.game">game</a></code> | <code>string</code> | The name of the game being hosted on this GameServer. |
 | <code><a href="#aws-gameservers.ValheimServerProps.property.backupGameServer">backupGameServer</a></code> | <code>boolean</code> | Optional: Whether to back up the GameServer. |
+| <code><a href="#aws-gameservers.ValheimServerProps.property.game">game</a></code> | <code>string</code> | The name of the game being hosted on this GameServer. |
 | <code><a href="#aws-gameservers.ValheimServerProps.property.instanceType">instanceType</a></code> | <code>aws-cdk-lib.aws_ec2.InstanceType</code> | Optional: The GameServer's EC2 Instance type. |
 | <code><a href="#aws-gameservers.ValheimServerProps.property.releaseIPOnDelete">releaseIPOnDelete</a></code> | <code>boolean</code> | Optional: Whether to automatically release the GameServer's elastic IP address when the stack is torn down. |
 | <code><a href="#aws-gameservers.ValheimServerProps.property.rootVolumeSize">rootVolumeSize</a></code> | <code>number</code> | Optional: The desired size of the GameServer's root volume, in GB. |
 | <code><a href="#aws-gameservers.ValheimServerProps.property.vpcId">vpcId</a></code> | <code>string</code> | Optional: The VPC ID of the existing VPC in which to deploy the GameServer. |
-
----
-
-##### `game`<sup>Required</sup> <a name="game" id="aws-gameservers.ValheimServerProps.property.game"></a>
-
-```typescript
-public readonly game: string;
-```
-
-- *Type:* string
-
-The name of the game being hosted on this GameServer.
-
-This is used for LogicalId sugar throughout the object.
 
 ---
 
@@ -328,6 +314,20 @@ public readonly backupGameServer: boolean;
 Optional: Whether to back up the GameServer.
 
 When true, the AWS Backup settings for the GameServer follow the "dailyMonthly1YearRetention" plan.
+
+---
+
+##### `game`<sup>Optional</sup> <a name="game" id="aws-gameservers.ValheimServerProps.property.game"></a>
+
+```typescript
+public readonly game: string;
+```
+
+- *Type:* string
+
+The name of the game being hosted on this GameServer.
+
+This is used for LogicalId sugar throughout the object.
 
 ---
 
