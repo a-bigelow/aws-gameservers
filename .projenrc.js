@@ -3,7 +3,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   author: 'a-bigelow',
   authorAddress: 'adam@adambigelow.com',
   cdkVersion: '2.9.0',
-  devDeps: ['commitizen'],
+  devDeps: ['commitizen', 'cz-conventional-changelog'],
   defaultReleaseBranch: 'main',
   name: 'aws-gameservers',
   repositoryUrl: 'https://github.com/a-bigelow/aws-gameservers.git',

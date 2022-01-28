@@ -207,7 +207,7 @@
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @types/jest @types/node aws-cdk-lib commitizen constructs jest jest-junit jsii jsii-diff jsii-docgen npm-check-updates prettier ts-jest typescript aws-cdk-lib constructs"
+          "exec": "yarn upgrade @types/jest @types/node aws-cdk-lib commitizen constructs cz-conventional-changelog jest jest-junit jsii jsii-diff jsii-docgen npm-check-updates prettier ts-jest typescript aws-cdk-lib constructs"
         },
         {
           "exec": "npx projen"
