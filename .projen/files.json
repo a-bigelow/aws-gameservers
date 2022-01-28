@@ -1,15 +1,15 @@
 {
   "files": [
-    ".eslintrc.json",
     ".gitattributes",
     ".github/pull_request_template.md",
     ".github/workflows/build.yml",
     ".github/workflows/pull-request-lint.yml",
-    ".github/workflows/release.yml",
     ".github/workflows/stale.yml",
-    ".github/workflows/upgrade-main.yml",
+    ".github/workflows/upgrade.yml",
     ".gitignore",
     ".mergify.yml",
+    ".prettierignore",
+    ".prettierrc.json",
     ".projen/deps.json",
     ".projen/files.json",
     ".projen/tasks.json",

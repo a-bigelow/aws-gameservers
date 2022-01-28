@@ -2,14 +2,23 @@ const { awscdk } = require('projen');
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'a-bigelow',
   authorAddress: 'adam@adambigelow.com',
-  cdkVersion: '2.1.0',
+  cdkVersion: '2.9.0',
+  devDeps: ['commitizen'],
   defaultReleaseBranch: 'main',
   name: 'aws-gameservers',
   repositoryUrl: 'https://github.com/a-bigelow/aws-gameservers.git',
-
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+  release: false, // Until further notice
+  eslint: false,
+  prettier: true,
+  prettierOptions: {
+    settings: {
+      useTabs: false,
+      tabWidth: 4,
+      printWidth: 120,
+    },
+  },
 });
+project.setScript('format', 'prettier -w "src/**/*.ts"');
+project.setScript('commit', 'cz');
+project.gitignore.addPatterns('.idea/');
 project.synth();
