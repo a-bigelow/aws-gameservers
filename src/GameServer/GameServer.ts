@@ -1,10 +1,8 @@
 import { RemovalPolicy } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import {
-    AmazonLinuxEdition,
     AmazonLinuxGeneration,
     AmazonLinuxImage,
-    AmazonLinuxStorage,
     BlockDeviceVolume,
     CfnEIP,
     EbsDeviceVolumeType,
