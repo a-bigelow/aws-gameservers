@@ -1,4 +1,5 @@
 const { awscdk } = require('projen');
+const { NodePackageManager } = require('projen/lib/javascript');
 const project = new awscdk.AwsCdkConstructLibrary({
   author: 'a-bigelow',
   authorAddress: 'adam@adambigelow.com',
