@@ -48,7 +48,7 @@ export interface GameServerProps extends StackProps {
     readonly rootVolumeSize?: number;
 
     /**
-     * Whether to automatically release the GameServer's elastic IP address when the stack is torn down.
+     * Optional: Whether to automatically release the GameServer's elastic IP address when the stack is torn down.
      * Elastic IPs cost a nominal fee when reserved but unallocated.
      * If you release an elastic IP, there is no way to guarantee that you'll ever get it back.
      * @see https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/elastic-ip-addresses-eip.html
@@ -57,7 +57,7 @@ export interface GameServerProps extends StackProps {
     readonly releaseIPOnDelete?: boolean;
 
     /**
-     * Whether to back up the GameServer. When true, the AWS Backup settings for the GameServer follow the "dailyMonthly1YearRetention" plan.
+     * Optional: Whether to back up the GameServer. When true, the AWS Backup settings for the GameServer follow the "dailyMonthly1YearRetention" plan.
      * @default true
      */
     readonly backupGameServer?: boolean;
