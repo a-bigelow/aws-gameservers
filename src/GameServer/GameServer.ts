@@ -63,6 +63,10 @@ export interface GameServerProps {
     readonly backupGameServer?: boolean;
 }
 
+/**
+ * Defines the overall expected shape of GameServer objects.
+ * @experimental
+ */
 export interface IGameServer {
     /**
      * The name of the game being hosted on this GameServer.

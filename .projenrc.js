@@ -22,4 +22,5 @@ const project = new awscdk.AwsCdkConstructLibrary({
 project.setScript('format', 'prettier -w "src/**/*.ts"');
 project.setScript('commit', 'cz');
 project.gitignore.addPatterns('.idea/');
+project.addKeywords('aws', 'games', 'dedicated server', 'valheim')
 project.synth();
