@@ -8,12 +8,12 @@ import {
     EbsDeviceVolumeType,
     IInstance,
     Instance,
-    InstanceType,
-    IVpc,
+    InstanceType, ISecurityGroup,
+    IVpc, SecurityGroup,
     SubnetType,
     UserData,
     Vpc,
-} from "aws-cdk-lib/aws-ec2";
+} from 'aws-cdk-lib/aws-ec2';
 import { BackupPlan, BackupResource, BackupSelection } from "aws-cdk-lib/aws-backup";
 import { IRole, ManagedPolicy, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 
@@ -96,6 +96,11 @@ export interface IGameServer {
      * The role associated with the GameServer's instance profile.
      */
     serverRole: IRole;
+
+    /**
+     * The security group attached to the GameServer Instance.
+     */
+    securityGroup: ISecurityGroup;
 }
 
 /**
@@ -109,7 +114,8 @@ export abstract class GameServer extends Construct implements IGameServer {
     public readonly server: IInstance;
     public readonly elasticIp: CfnEIP;
     public userData: UserData;
-    public serverRole: IRole
+    public serverRole: IRole;
+    public securityGroup: ISecurityGroup;
 
     constructor(scope: Construct, id: string, props: GameServerProps) {
         super(scope, id);
@@ -139,6 +145,10 @@ export abstract class GameServer extends Construct implements IGameServer {
         this.serverRole = new Role(this, `${this.game}ServerRole`, { assumedBy: new ServicePrincipal('ec2.amazonaws.com')})
         this.serverRole.addManagedPolicy(ManagedPolicy.fromAwsManagedPolicyName('AmazonSSMManagedInstanceCore'))
 
+        //Instantiate the Server security grou
+        this.securityGroup = new SecurityGroup(this, `${this.game}SecurityGroup`, { vpc: this.vpc })
+
+        // Instantiate the GameServer instance
         this.server = new Instance(this, `${this.game}Server`, {
             blockDevices: [
                 {
@@ -156,7 +166,8 @@ export abstract class GameServer extends Construct implements IGameServer {
             propagateTagsToVolumeOnCreation: true,
             userData: this.userData,
             vpc: this.vpc,
-            role: this.serverRole
+            role: this.serverRole,
+            securityGroup: this.securityGroup
         });
 
         this.elasticIp = new CfnEIP(this, `${this.game}ElasticIP`, {
