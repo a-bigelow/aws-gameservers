@@ -47,10 +47,10 @@
     "jest-junit": "^13",
     "jsii": "^1.52.1",
     "jsii-diff": "^1.52.1",
-    "jsii-docgen": "^5.0.13",
+    "jsii-docgen": "^5.0.16",
     "npm-check-updates": "^12",
     "prettier": "^2.5.1",
-    "projen": "^0.52.4",
+    "projen": "^0.52.12",
     "standard-version": "^9",
     "ts-jest": "^27.1.3",
     "typescript": "^4.5.5"
